@@ -25,3 +25,31 @@ export async function simpanKelas(req: Request, res: Response) {
     data: newKelas,
   });
 }
+
+export async function ambilDataById(req: Request, res: Response) {
+  const id: string = req.params.id;
+  const conn = await connect();
+  const data = await conn.query("SELECT * FROM kelas WHERE id = ? ", [id]);
+  return res.status(200).json(data[0]);
+}
+
+export async function editKelas(req: Request, res: Response) {
+  const id: string = req.params.id;
+  const newKelas = req.body;
+  const conn = await connect();
+  await conn.query("UPDATE kelas SET ? WHERE id = ?", [newKelas, id]);
+  return res.status(200).json({
+    status: 200,
+    pesan: "Sukses!!",
+  });
+}
+
+export async function hapusKelas(req: Request, res: Response) {
+  const id: string = req.params.id;
+  const conn = await connect();
+  await conn.query("DELETE FROM kelas WHERE id = ? ", [id]);
+  return res.status(200).json({
+    status: 200,
+    pesan: "Sukses!!",
+  });
+}

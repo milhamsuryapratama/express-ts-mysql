@@ -5,7 +5,9 @@ import { Siswa } from "./siswa.interface";
 export class SiswaController {
   async ambil(req: Request, res: Response) {
     const conn = await connect();
-    const siswa = await conn.query("SELECT * FROM siswa");
+    const siswa = await conn.query(
+      "SELECT * FROM siswa JOIN kelas ON kelas.id = siswa.kelas_id"
+    );
     return res.status(200).json(siswa[0]);
   }
 

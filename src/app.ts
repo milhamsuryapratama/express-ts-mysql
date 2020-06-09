@@ -4,6 +4,7 @@ import cors from "cors";
 
 // Routes
 import KelasRoutes from "./kelas/kelas.routes";
+import SiswaRoutes from "./siswa/siswa.routes";
 
 class App {
   app: Application;
@@ -16,6 +17,7 @@ class App {
 
   private routes() {
     this.app.use("/kelas", KelasRoutes);
+    this.app.use("/siswa", SiswaRoutes);
   }
 
   private middlewares() {

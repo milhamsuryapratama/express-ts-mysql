@@ -6,5 +6,9 @@ const controller = new SiswaController();
 
 router.route("/").get(controller.ambil).post(controller.simpanSiswa);
 router.route("/:nis").get(controller.ambilById);
+router
+  .route("/:nis")
+  .get(controller.ambilById)
+  .put(controller.editSiswa)
 
 export default router;

@@ -28,4 +28,15 @@ export class SiswaController {
       pesan: "Sukses!!",
     });
   }
+
+  async editSiswa(req: Request, res: Response) {
+    const nis = req.params.nis;
+    const newSiswa = req.body;
+    const conn = await connect();
+    await conn.query("UPDATE siswa SET ? WHERE nis = ? ", [newSiswa, nis]);
+    return res.status(201).json({
+      status: 200,
+      pesan: "Sukses!!",
+    });
+  }
 }

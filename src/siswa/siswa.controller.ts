@@ -18,4 +18,14 @@ export class SiswaController {
     );
     return res.status(200).json(siswa[0]);
   }
+
+  async simpanSiswa(req: Request, res: Response) {
+    const siswa = req.body;
+    const conn = await connect();
+    await conn.query("INSERT INTO siswa SET ? ", [siswa]);
+    return res.status(201).json({
+      status: 201,
+      pesan: "Sukses!!",
+    });
+  }
 }

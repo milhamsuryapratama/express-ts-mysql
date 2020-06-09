@@ -41,4 +41,14 @@ export class SiswaController {
       pesan: "Sukses!!",
     });
   }
+
+  async hapusSiswa(req: Request, res: Response) {
+    const nis = req.params.nis;
+    const conn = await connect();
+    await conn.query("DELETE FROM siswa WHERE nis = ? ", [nis]);
+    return res.status(201).json({
+      status: 200,
+      pesan: "Sukses!!",
+    });
+  }
 }
